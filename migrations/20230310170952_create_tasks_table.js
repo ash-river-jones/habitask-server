@@ -7,13 +7,13 @@ exports.up = function (knex) {
 		table.uuid('task_id').primary().notNullable();
 		table.string('title').notNullable();
 		table.text('description');
-		table.enu('priority', ['low', 'medium', 'high']).notNullable();
-		table.enu('status', ['incomplete', 'complete']).notNullable();
+		table.string('priority').notNullable();
+		table.string('status').notNullable();
 		table.date('due_date');
 		table.boolean('is_repeated').defaultTo(false);
-		table.enu('repeat)frequency', ['daily','weekly','monthly'])
+		table.string('repeat_frequency').defaultTo('N/A')
 		table.uuid('user_id').references('user_id').inTable('users').onDelete('CASCADE');
-		table.uuid('category_id').references('category_id').inTable('categories')
+		table.uuid('category_id').references('category_id').inTable('categories');
 	});
 };
 
